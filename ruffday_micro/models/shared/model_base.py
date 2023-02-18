@@ -9,8 +9,8 @@ class ResourceBase(BaseModel):
 
     db: str
     key: str
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
+    created_date: Optional[datetime]
+    updated_date: Optional[datetime]
 
     @classmethod
     @validator("created_at", "updated_at", pre=True)
