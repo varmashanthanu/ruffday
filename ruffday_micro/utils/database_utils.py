@@ -1,3 +1,4 @@
+import datetime
 from enum import Enum
 from typing import Dict, Any
 from urllib.error import HTTPError
@@ -21,10 +22,13 @@ class DatabaseManager:
 
         """
         for key, value in resource.items():
+            # TODO Need to fix AAAALLLLLLL of this once migrated to Postgres
             if isinstance(value, Enum):
                 resource.update({key: value.value})
             elif isinstance(value, Dict):
                 resource.update({key: cls.clean_resource(resource=value)})
+            if isinstance(value, datetime.datetime):
+                resource.update({key: value.isoformat()})
 
         return resource
 
@@ -70,7 +74,15 @@ class DatabaseManager:
 
         """
         db = deta.Base(db_name)
-        return db.get(key=key)
+        resource = db.get(key=key)
+
+        if resource:
+            for key, value in resource.items():
+                # TODO: Need to get rid of this once migrated to Postgres
+                if key.endswith("_date"):
+                    resource.update({key: datetime.datetime.fromisoformat(value)})
+
+        return resource
 
     @classmethod
     def search_db(
