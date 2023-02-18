@@ -1,0 +1,3 @@
+from .adoptions_pages.adoption_pages import adoption_pages_router
+from .adoption_organizations_pages.adoption_organization_pages import adoption_organization_pages_router
+from .general_pages.home import general_pages_router

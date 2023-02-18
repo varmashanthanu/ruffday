@@ -1,0 +1,55 @@
+{% extends "shared/base.html" %}
+
+
+{% block title %}
+<title>Adoptions</title>
+{% endblock %}
+{% block content %}
+<div id="block-1" class="container-fluid">
+    <div class="px-sm-5 py-sm-5 my-3">
+        <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Breed</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for adoption in adoptions %}
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img
+                                src={{ adoption.img_url }}
+                                alt=""
+                                style="width: 45px; height: 45px"
+                                class="rounded-circle"
+                        />
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">{{ adoption.name }}</p>
+                            <p class="text-muted mb-0">{{ adoption.location }}</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{ adoption.age }}</p>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{ adoption.breed }}</p>
+                </td>
+                <td>
+                    {% if adoption.status.value == 'available' -%}
+                    <span class="badge bg-success rounded-pill d-inline">Available</span>
+                    {%- else -%}
+                    <span class="badge bg-primary rounded-pill d-inline">Adopted</span>
+                    {%- endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

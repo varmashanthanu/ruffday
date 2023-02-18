@@ -1,0 +1,39 @@
+{% extends "shared/base.html" %}
+
+
+{% block title %}
+<title>Adoption Organizations</title>
+{% endblock %}
+{% block content %}
+<div id="block-1" class="container-fluid">
+    <div class="px-sm-5 py-sm-5 my-3">
+        <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+            <tr>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for adoption_organization in adoption_organizations %}
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img
+                                src={{ adoption_organization.img_url }}
+                                alt=""
+                                style="width: 45px; height: 45px"
+                                class="rounded-circle"
+                        />
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">{{ adoption_organization.name }}</p>
+                            <p class="text-muted mb-0">{{ adoption_organization.location }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

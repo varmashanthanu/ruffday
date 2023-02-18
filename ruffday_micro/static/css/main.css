@@ -1,0 +1,49 @@
+:root {
+    --base-color: #00221a;
+    --base-contrast: #01bab4;
+    --base-text: #01bab4;
+    --base-contrast-text: #c8d9d5;
+    --casual-back: #e2f1f6;
+    --montserrat: 'Montserrat', 'sans-serif';
+    --great-vibes: 'Great Vibes', 'sans-serif';
+    --sacramento: 'Sacramento', 'sans-serif';
+    --poiret-one: 'Poiret One', 'sans-serif';
+}
+
+body {
+    background-color: var(--base-color);
+    color: var(--base-contrast-text);
+}
+
+.bg-img, .overlay-img {
+    width: 100%;
+}
+
+.overlay-1 {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.vignette-shadow-ex {
+    padding: 10rem 10rem;
+    background: rgba(var(--base-color),0.5);
+    box-shadow: inset 0 -10rem 100rem var(--base-color);
+}
+
+.overlay-img {
+    /*background: hotpink;*/
+    /*box-shadow: inset 0 0 100px black;*/
+}
+
+.overlay-text {
+    padding: 0 2rem;
+    align-self: end;
+}
+
+.logo {
+    border-radius: 80%;
+}
+
+/*th, td {*/
+/*    text-align: end;*/
+/*}*/

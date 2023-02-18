@@ -1,0 +1,56 @@
+{% extends "shared/base.html" %}
+
+
+{% block title %}
+<title>Ruffday</title>
+{% endblock %}
+
+{% block content %}
+<div id="block-1" class="container-fluid"> <!-- Main container -->
+    <div class="px-4 py-5 my-5 text-center"> <!-- First Block -->
+
+        <!--    Header with image    -->
+        <h1 class="display-5 fw-bold">RuffDay</h1>
+        <div class="col-lg-6 mx-auto" style="display: grid">
+            <!--  Image and Welcome text should be overlaid on the same grid block -->
+            <img src="{{ url_for('static', path='images/bobo_cropped.jpeg') }}" alt=""
+                 class="img-responsive overlay-1 overlay-img"/>
+            <span class="overlay-1 vignette-shadow-ex"></span>
+            <p class="lead mb-4 overlay-1 overlay-text">
+                {% if user %}
+                Having a ruff day, {{ user.get("name") }}? Find your better whole.
+                {% else %}
+                Having a ruff day, buddy? Find your better whole.
+                {% endif %}
+            </p>
+            <!--  End of the image and text overlay block  -->
+            <!--  Call-to-action buttons  -->
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center" style="margin-top: 1rem">
+                <!--  Search Form  -->
+                <div class="input-group">
+                    <input id="search-value" type="search" class="form-control rounded" placeholder="Your Address or ZIP Code"
+                           aria-label="Search"
+                           aria-describedby="search-addon"/>
+                    <button type="button" class="btn btn-outline-primary"
+                            onclick="document.searchForm.searchValue.value=document.getElementById('search-value').value;document.searchForm.submit();"
+                    >SEARCH</button>
+                </div>
+                <!--  Login Button  -->
+                <a href="/login"> <button type="button" class="btn btn-primary">LOGIN
+                </button></a>
+
+                <!--  Hidden form -->
+                <form name="searchForm" action="/adoptions" method="get">
+                    <input type="hidden" name="searchValue" id="searchValue">
+                </form>
+                <!--  End Hidden form -->
+
+                <!--  End of Call-to-action buttons  -->
+            </div>
+        </div>
+    </div>
+</div>
+<div id="block-2" class="container-fluid">
+
+</div>
+{% endblock %}

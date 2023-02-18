@@ -1,0 +1,21 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+app_name: "Ruffday"
+micros:
+  - name: ruffday_micro
+    src: ruffday_micro
+    engine: python3.9
+    primary: true
+    public_routes:
+      - "/*"
+    presets:
+      env:
+      - name: SECRET_KEY
+        description: fast API app secret key
+        default: app_secret_here
+      - name: GOOGLE_CLIENT_ID
+        description: Google client ID here
+        default: Google client ID here
+      - name: GOOGLE_CLIENT_SECRET
+        description: Google client secret here
+        default: Google client secret here
