@@ -8,6 +8,7 @@ from starlette.authentication import AuthenticationBackend
 from core.config import Settings
 from apis import (
     adoption_pages_router,
+    adoption_fetchers_pages_router,
     adoption_organization_pages_router,
     general_pages_router
 )
@@ -16,6 +17,7 @@ from apis import (
 ROUTERS_LIST = [
     general_pages_router,
     adoption_pages_router,
+    adoption_fetchers_pages_router,
     adoption_organization_pages_router,
 ]
 
