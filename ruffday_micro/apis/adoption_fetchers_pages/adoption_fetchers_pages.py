@@ -39,3 +39,18 @@ class HtmlAdoptionFetcher(BeautifulSoup):
               to be parsed.
         """
         super().__init__(markup, 'html.parser')
+
+    def find_adoptions(self):
+        raise NotImplementedError
+
+
+class TorontoHumaneSocietyFetcher(HtmlAdoptionFetcher):
+    """
+    Fetcher that parses dogs available for adoption from the Toronto Humane
+      Society. The URL is stored in TorontoHumaneSocietyFetcher.ADOPTIONS_URL.
+    """
+
+    ADOPTIONS_URL = 'https://www.torontohumanesociety.com/adoption-and-rehoming/adopt/dog-adopt-process/'
+
+    def find_adoptions(self):
+        return self.find_all('div', 'title')

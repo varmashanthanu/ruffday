@@ -1,8 +1,10 @@
 import unittest
 
 from apis.adoption_fetchers_pages.adoption_fetchers_pages import HtmlAdoptionFetcher
+from apis.adoption_fetchers_pages.adoption_fetchers_pages import TorontoHumaneSocietyFetcher
 
-class TestHtmlAdoptionFetcher(unittest.TestCase):
+
+class HtmlAdoptionFetcherTest(unittest.TestCase):
 
     __TEST_HTML_DOC = """
     <html><head><title>The Dormouse's story</title></head>
@@ -30,6 +32,15 @@ class TestHtmlAdoptionFetcher(unittest.TestCase):
         ]
         self.assertListEqual(expected_links, actual_links)
 
+
+class TorontoHumaneSocietyFetcherTest(unittest.TestCase):
+
+    __TEST_HTML_FILENAME = 'tests\\apis\\adoption_fetchers_pages\\TorontoHumaneSocietyExample.html'
+
+    def test_find_adoptions(self):
+        with open(self.__TEST_HTML_FILENAME, encoding='utf8') as test_doc:
+            text = test_doc.read()
+            adoption_fetcher = TorontoHumaneSocietyFetcher(text)
 
 if __name__ == '__main__':
     unittest.main()
