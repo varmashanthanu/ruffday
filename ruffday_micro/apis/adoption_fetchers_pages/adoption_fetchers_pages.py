@@ -1,5 +1,6 @@
 from fastapi import HTTPException, status, APIRouter, Request
 from fastapi.templating import Jinja2Templates
+from bs4 import BeautifulSoup
 
 
 templates = Jinja2Templates(directory=f"templates")
@@ -20,5 +21,21 @@ async def home(request: Request):
     Returns:
 
     """
-    
     return templates.TemplateResponse(f"{TEMPLATES_SUB}/adoption_fetchers.html", {"request": request})
+
+
+class HtmlAdoptionFetcher(BeautifulSoup):
+    """
+    Abstracts away the HTML parsing libraries used in the background.
+    """
+
+    def __init__(self, markup):
+        """
+        Simplified constructor that defaults BeautifulSoup to using the
+         built-in Python HTML parsing libraries.
+
+        Args:
+            markup:  A string or a file-like object representing markup
+              to be parsed.
+        """
+        super().__init__(markup, 'html.parser')
