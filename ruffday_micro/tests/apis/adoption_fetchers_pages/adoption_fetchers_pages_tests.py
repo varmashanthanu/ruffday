@@ -36,11 +36,19 @@ class HtmlAdoptionFetcherTest(unittest.TestCase):
 class TorontoHumaneSocietyFetcherTest(unittest.TestCase):
 
     __TEST_HTML_FILENAME = 'tests\\apis\\adoption_fetchers_pages\\TorontoHumaneSocietyExample.html'
+    __PET_NAMES =  [
+        'Cooper', 'Goldie', 'Rogers', 'Togo', 'Homie', 'Oscar', 'Dolly',
+        'Luka', 'Rally', 'Silas', 'Sika', 'Carling', 'Harley Chanel', 'Wonder',
+        'Chop', 'Nicky', 'Teddy', 'Casey', 'Jelly', 'Markie', 'Caitlin',
+        'Forrest', 'Tex', 'Juniper', 'Dallas', 'Pablo', 'Thor', 'Irie', 'Char',
+        'Gaius', 'Domme', 'Pocky']
 
     def test_find_adoptions(self):
         with open(self.__TEST_HTML_FILENAME, encoding='utf8') as test_doc:
             text = test_doc.read()
             adoption_fetcher = TorontoHumaneSocietyFetcher(text)
+            self.assertListEqual(self.__PET_NAMES, adoption_fetcher.find_names())
+
 
 if __name__ == '__main__':
     unittest.main()

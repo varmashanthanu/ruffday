@@ -52,5 +52,18 @@ class TorontoHumaneSocietyFetcher(HtmlAdoptionFetcher):
 
     ADOPTIONS_URL = 'https://www.torontohumanesociety.com/adoption-and-rehoming/adopt/dog-adopt-process/'
 
+    def find_names(self):
+        """
+        Finds the names for all the pets listed on the page.
+         Does not check for availability of the pet.
+        
+        Returns:
+             a list of strings, where each item is the name of a different pet
+        """
+        names_divs = self.find_all('div', 'title')
+        names_h2s = [div.find('h2') for div in names_divs]
+        names = [h2.string if h2 else '' for h2 in names_h2s]
+        return names
+
     def find_adoptions(self):
         return self.find_all('div', 'title')
